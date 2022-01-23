@@ -1,2 +1,2 @@
 # wapro
-It's an communication project
+It's a communication project
