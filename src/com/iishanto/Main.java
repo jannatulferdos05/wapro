@@ -15,7 +15,8 @@ public class Main {
          */
         JsonLoaderInterface jsonLoader=new JsonLoader();
         try {
-            jsonLoader.startFromInputStream(new FileInputStream(new File("test/samplejson.json")));
+            String cwd=System.getProperty("user.dir");
+            jsonLoader.startFromInputStream(new FileInputStream(new File(cwd+"/src/com/iishanto/test/samplejson.json")));
             new Thread(new Runnable() {
                 @Override
                 public void run() {

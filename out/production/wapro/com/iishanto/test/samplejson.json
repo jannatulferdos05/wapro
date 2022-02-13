@@ -1,0 +1,29 @@
+{
+  "time": 543531212121,
+  "type": "userInformation",
+  "device": "Samsung GN7",
+  "data": {
+    "name": "JF Jui",
+    "Password": "#$jj$joj$$%",
+    "username": "jannatulferdos05"
+  }
+}    {
+  "time": 121312344,
+  "type": "msg",
+  "device": "Redmi note 10",
+  "data": {
+    "to": "iishanto",
+    "msg": "JoJ",
+    "attachments": {
+      "image": {
+        "url": "bleh"
+      }
+    }
+  }
+}{
+  "time": 231324124214,
+  "type": "presense",
+  "data": {
+    "active": true
+  }
+}
