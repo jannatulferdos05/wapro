@@ -1,7 +1,8 @@
 package com.iishanto;
 
-import com.iishanto.jsonLoader.JsonLoader;
-import com.iishanto.jsonLoader.JsonLoaderInterface;
+import com.iishanto.jsonLoader.*;
+import com.iishanto.jsonLoader.Classes.JsonCallbackManager;
+import com.iishanto.jsonLoader.Classes.JsonLoader;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,21 +15,24 @@ public class Main {
         @ Unit testing JsonLoader class
          */
         JsonLoaderInterface jsonLoader=new JsonLoader();
-        try {
-            String cwd=System.getProperty("user.dir");
-            jsonLoader.startFromInputStream(new FileInputStream(new File(cwd+"/src/com/iishanto/test/samplejson.json")));
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true){
-                        if(jsonLoader.hasJson()){
-                            jsonLoader.topJson();
-                        }
-                    }
+        String cwd=System.getProperty("user.dir");
+        JsonCallbackManagerInterface jsonCallbackManager=new JsonCallbackManager();
+        jsonCallbackManager.addCallBack("userInformation", new JsonCallbackInterface() {
+            @Override
+            public void execute(Object jsonObject) {
+                System.out.printf("JSON OBJECT FOUND FOR USER INFORMATION");
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    jsonLoader.startFromInputStream(new FileInputStream(new File(cwd+"/src/com/iishanto/test/samplejson.json")),jsonCallbackManager);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
-            }).start();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            }
+        }).start();
     }
 }
